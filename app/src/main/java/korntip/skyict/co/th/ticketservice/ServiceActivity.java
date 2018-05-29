@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -49,6 +51,15 @@ public class ServiceActivity extends AppCompatActivity {
         int[] iconInts = myConstance.getIconInts();
         ListAdapter listAdapter = new ListViewAdapter(ServiceActivity.this, titleStrings, iconInts);
         listView.setAdapter(listAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                drawerLayout.closeDrawers();
+
+            }
+        });
     }
 
     @Override

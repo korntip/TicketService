@@ -27,6 +27,7 @@ import korntip.skyict.co.th.ticketservice.MainActivity;
 import korntip.skyict.co.th.ticketservice.R;
 import korntip.skyict.co.th.ticketservice.ServiceActivity;
 import korntip.skyict.co.th.ticketservice.utility.MyAlertDialog;
+import korntip.skyict.co.th.ticketservice.utility.MyConstance;
 import korntip.skyict.co.th.ticketservice.utility.ReadAllData;
 
 public class MainFragment extends Fragment {
@@ -90,9 +91,11 @@ public class MainFragment extends Fragment {
 
                     try {
 
+                        MyConstance myConstance = new MyConstance();
                         boolean userBool = true;
                         String truePasswordString = null, nameString = null, idString = null;
-                        String urlJSON = "http://androidthai.in.th/gate/getAllUserKet.php";
+
+                        String urlJSON = myConstance.getUrlGetAllUser();
                         ReadAllData readAllData = new ReadAllData(getActivity());
                         readAllData.execute(urlJSON);
                         MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity());

@@ -4,6 +4,8 @@ import korntip.skyict.co.th.ticketservice.R;
 
 public class MyConstance {
 
+    private String urlGetAllUser = "https://android.skyict.co.th/getAllUserKet.php";
+
     private String[] titleListStrings = new String[]{"Ticket", "New Ticket", "Report", "About"};
 
     private int[] iconInts = new int[]{
@@ -12,6 +14,10 @@ public class MyConstance {
             R.drawable.ic_action_new_report,
             R.drawable.ic_action_new_about};
 
+
+    public String getUrlGetAllUser() {
+        return urlGetAllUser;
+    }
 
     public String[] getTitleListStrings() {
         return titleListStrings;
