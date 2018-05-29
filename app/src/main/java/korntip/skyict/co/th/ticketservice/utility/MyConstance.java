@@ -4,6 +4,8 @@ import korntip.skyict.co.th.ticketservice.R;
 
 public class MyConstance {
 
+    private String[] titleTabLayout = new String[]{"New Item", "Active", "Critical", "Last"};
+
     private String urlGetAllUser = "https://android.skyict.co.th/getAllUserKet.php";
 
     private String[] titleListStrings = new String[]{"Ticket", "New Ticket", "Report", "About"};
@@ -14,6 +16,9 @@ public class MyConstance {
             R.drawable.ic_action_new_report,
             R.drawable.ic_action_new_about};
 
+    public String[] getTitleTabLayout() {
+        return titleTabLayout;
+    }
 
     public String getUrlGetAllUser() {
         return urlGetAllUser;
