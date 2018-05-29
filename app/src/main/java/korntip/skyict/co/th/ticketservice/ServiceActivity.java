@@ -12,6 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import korntip.skyict.co.th.ticketservice.utility.ListViewAdapter;
+import korntip.skyict.co.th.ticketservice.utility.MyConstance;
 
 public class ServiceActivity extends AppCompatActivity {
 
@@ -31,7 +36,20 @@ public class ServiceActivity extends AppCompatActivity {
 //        Create Toolbar
         createToolbar();
 
+//        Create ListView
+        createListView();
+
     }   // Main Method
+
+    private void createListView() {
+        ListView listView = findViewById(R.id.myListview);
+        MyConstance myConstance = new MyConstance();
+
+        String[] titleStrings = myConstance.getTitleListStrings();
+        int[] iconInts = myConstance.getIconInts();
+        ListAdapter listAdapter = new ListViewAdapter(ServiceActivity.this, titleStrings, iconInts);
+        listView.setAdapter(listAdapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
