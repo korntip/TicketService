@@ -29,7 +29,7 @@ import korntip.skyict.co.th.ticketservice.ServiceActivity;
 import korntip.skyict.co.th.ticketservice.utility.MyAlertDialog;
 import korntip.skyict.co.th.ticketservice.utility.ReadAllData;
 
-public class MainFragment extends Fragment{
+public class MainFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -98,49 +98,60 @@ public class MainFragment extends Fragment{
                         MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity());
 
                         String resultJSON = readAllData.get();
-                        Log.d("28MayV1", "JSON ==> "+ resultJSON);
+                        Log.d("28MayV1", "JSON ==> " + resultJSON);
 
                         JSONArray jsonArray = new JSONArray(resultJSON);
-                        for (int i=0; i<jsonArray.length(); i++) {
+                        Log.d("29MayV3", "Amont Record ==> " + jsonArray.length());
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                            Log.d("29MayV3", "User User ==> " + userString);
+                            Log.d("29MayV3", "User User ==> " + jsonObject.getString("User"));
+
                             if (userString.equals(jsonObject.getString("User"))) {
+
                                 userBool = false;
                                 truePasswordString = jsonObject.getString("Password");
                                 nameString = jsonObject.getString("Name");
                                 idString = jsonObject.getString("id");
-                            } else if (passwordString.equals(truePasswordString)) {
-                                Toast.makeText(getActivity(), "Welcome " + nameString,
-                                        Toast.LENGTH_SHORT).show();
 
-//                                Check Remember
-                                CheckBox checkBox = getView().findViewById(R.id.chbRemember);
-                                if (checkBox.isChecked()) {
-                                    saveIdAndName(idString, nameString);
-                                }
-
-//                                Intent to ServiceActivity
-                                intentToService(nameString, idString);
-
-                            } else {
-                                myAlertDialog.normalDialog("Password False",
-                                        "Please Try Password False");
                             }
 
-                        }
+                        }   // for
 
                         if (userBool) {
 //                            User False
                             myAlertDialog.normalDialog("User False",
                                     "No This User in my Database");
+                        }else if (passwordString.equals(truePasswordString)) {
+                            Toast.makeText(getActivity(), "Welcome " + nameString,
+                                    Toast.LENGTH_SHORT).show();
+
+//                                Check Remember
+                            CheckBox checkBox = getView().findViewById(R.id.chbRemember);
+                            if (checkBox.isChecked()) {
+                                saveIdAndName(idString, nameString);
+                            }
+
+//                                Intent to ServiceActivity
+                            intentToService(nameString, idString);
+
+                        } else {
+
+                            Log.d("29MayV3", "Pass User ==> " + passwordString);
+                            Log.d("29MayV3", "Pass database ==> " + truePasswordString);
+
+
+                            myAlertDialog.normalDialog("Password False",
+                                    "Please Try Password False");
                         }
 
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
 
 
                 }   // if
@@ -201,7 +212,7 @@ public class MainFragment extends Fragment{
     private void createToolbar() {
 
         Toolbar toolbar = getView().findViewById(R.id.toolbarMain);
-        ((MainActivity)getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
 
 //        Setup Title
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Welcome");
@@ -213,7 +224,7 @@ public class MainFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main,container,false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
         return view;
     }
 }
