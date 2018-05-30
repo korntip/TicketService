@@ -4,6 +4,9 @@ import korntip.skyict.co.th.ticketservice.R;
 
 public class MyConstance {
 
+    private String urlAssign = "https://android.skyict.co.th/getAssign.php";
+    private String urlSeverity = "https://android.skyict.co.th/getSeverity.php";
+
     private String ulrNewIemString = "https://android.skyict.co.th/getNewTicket.php";
     private String urlActiveString = "https://android.skyict.co.th/getPendingTicket.php";
     private String urlCriticalString = "https://android.skyict.co.th/getCriticalTicket.php";
@@ -21,6 +24,13 @@ public class MyConstance {
             R.drawable.ic_action_new_report,
             R.drawable.ic_action_new_about};
 
+    public String getUrlAssign() {
+        return urlAssign;
+    }
+
+    public String getUrlSeverity() {
+        return urlSeverity;
+    }
 
     public String getUlrNewIemString() {
         return ulrNewIemString;
