@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import korntip.skyict.co.th.ticketservice.fragment.AddNewTicketFragment;
 import korntip.skyict.co.th.ticketservice.fragment.BaseTicketFragment;
 import korntip.skyict.co.th.ticketservice.utility.ListViewAdapter;
 import korntip.skyict.co.th.ticketservice.utility.MyConstance;
@@ -70,9 +71,32 @@ public class ServiceActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 drawerLayout.closeDrawers();
+                replaceToFragment(position);
 
             }
         });
+    }
+
+    private void replaceToFragment(int position) {
+
+        switch (position) {
+            case 0:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentServiceFragment,
+                                BaseTicketFragment.baseTicketInstance(idString, nameUserString))
+                        .commit();
+                break;
+            case 1:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contentServiceFragment,
+                                AddNewTicketFragment.addNewTicketInstance(idString, nameUserString))
+                        .commit();
+                break;
+        }
+
+
     }
 
     @Override
