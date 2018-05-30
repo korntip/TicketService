@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import korntip.skyict.co.th.ticketservice.R;
 import korntip.skyict.co.th.ticketservice.utility.MyConstance;
+import korntip.skyict.co.th.ticketservice.utility.TicketViewPagerAdapter;
 
 public class BaseTicketFragment extends Fragment{
 
@@ -40,8 +41,36 @@ public class BaseTicketFragment extends Fragment{
 //        Create TabLayout
         createTabLayout();
 
+//        Create ViewPager
+        createViewPager();
+
 
     }   // Main Method
+
+    private void createViewPager() {
+        viewPager = getView().findViewById(R.id.viewPagerTicket);
+        TicketViewPagerAdapter ticketViewPagerAdapter = new TicketViewPagerAdapter(
+                getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(ticketViewPagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+    }
 
     private void createTabLayout() {
         MyConstance myConstance = new MyConstance();
