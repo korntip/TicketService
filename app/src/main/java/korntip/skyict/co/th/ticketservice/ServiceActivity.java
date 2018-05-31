@@ -57,6 +57,11 @@ public class ServiceActivity extends AppCompatActivity {
 
     }   // Main Method
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
+
     private void createListView() {
         ListView listView = findViewById(R.id.myListview);
         MyConstance myConstance = new MyConstance();
