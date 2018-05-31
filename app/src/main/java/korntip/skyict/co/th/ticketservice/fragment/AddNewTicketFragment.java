@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import org.json.JSONArray;
@@ -22,6 +23,7 @@ import korntip.skyict.co.th.ticketservice.utility.ReadAllData;
 public class AddNewTicketFragment extends Fragment {
 
     private String idString, nameUserString;
+    private String[] userAssignStrings, nameAndSurStrings;
 
     public static AddNewTicketFragment addNewTicketInstance(String idString, String nameString) {
         AddNewTicketFragment addNewTicketFragment = new AddNewTicketFragment();
@@ -77,11 +79,32 @@ public class AddNewTicketFragment extends Fragment {
             Log.d("30MayV3", "User ==> " + userAssignStringArrayList.toString());
             Log.d("30MayV3", "Name ==> " + nameAndAssignSurStringArrayList.toString());
 
+            userAssignStrings = changeArrayListToArray(userAssignStringArrayList);
+            nameAndSurStrings = changeArrayListToArray(nameAndAssignSurStringArrayList);
+
+            for (int i=0; i<userAssignStrings.length; i++) {
+                Log.d("30MayV3", "UserAssign[" + i + "] ==> " + userAssignStrings[i]);
+                Log.d("30MayV3", "nameAndSurAssign[" + i + "] ==> " + nameAndSurStrings[i]);
+            }
+
+            ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_expandable_list_item_1, nameAndSurStrings);
+            spinner.setAdapter(stringArrayAdapter);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    private String[] changeArrayListToArray(ArrayList<String> stringArrayList) {
+
+        String[] strings = new String[stringArrayList.size()];
+
+        for (int i=0; i<stringArrayList.size(); i++) {
+            strings[i] = stringArrayList.get(i);
+        }
+        return strings;
     }
 
     private void getValueArgument() {
